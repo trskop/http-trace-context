@@ -1,0 +1,68 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: de038311c30692fb736510afd022466e84cf2c60a8f0af2aed32bbe48859d9f2
+
+name:           http-trace-context
+version:        0.1.0.0
+synopsis:       Parsing and rendering of Trace Context HTTP headers for distributed tracing.
+
+description:    Parsing and rendering of Trace Context HTTP headers for distributed tracing
+                as defined by [Trace Context Level 1](https://www.w3.org/TR/trace-context-1/)
+                and [Trace Context Level 2 (Draft)](https://w3c.github.io/trace-context/).
+                .
+                See [GitHub README](https://github.com/trskop/trace-context#readme) for more
+                information.
+category:       Network, Web
+homepage:       https://github.com/trskop/http-trace-context#readme
+bug-reports:    https://github.com/trskop/http-trace-context/issues
+author:         Peter Trško
+maintainer:     peter.trsko@gmail.com
+copyright:      (c) 2020 Peter Trško
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/trskop/http-trace-context
+
+library
+  exposed-modules:
+      Network.HTTP.TraceContext
+      Network.HTTP.TraceContext.Internal
+  other-modules:
+      Paths_http_trace_context
+  hs-source-dirs:
+      src
+  default-extensions: BlockArguments DataKinds DefaultSignatures DeriveAnyClass DeriveFunctor DeriveGeneric DerivingStrategies DuplicateRecordFields FlexibleContexts FlexibleInstances GeneralizedNewtypeDeriving InstanceSigs LambdaCase MultiParamTypeClasses MultiWayIf NamedFieldPuns NoImplicitPrelude OverloadedStrings PatternSynonyms PolyKinds RankNTypes RecordWildCards ScopedTypeVariables StandaloneDeriving TupleSections TypeApplications TypeFamilies TypeOperators
+  ghc-options: -Wall -Wcompat
+  build-depends:
+      attoparsec
+    , base >=4.12 && <5
+    , bytestring
+    , deepseq
+    , http-types
+  default-language: Haskell2010
+
+test-suite command-wrapper-tests
+  type: exitcode-stdio-1.0
+  main-is: Main.hs
+  other-modules:
+      Paths_http_trace_context
+  hs-source-dirs:
+      test
+  default-extensions: BlockArguments DataKinds DefaultSignatures DeriveAnyClass DeriveFunctor DeriveGeneric DerivingStrategies DuplicateRecordFields FlexibleContexts FlexibleInstances GeneralizedNewtypeDeriving InstanceSigs LambdaCase MultiParamTypeClasses MultiWayIf NamedFieldPuns NoImplicitPrelude OverloadedStrings PatternSynonyms PolyKinds RankNTypes RecordWildCards ScopedTypeVariables StandaloneDeriving TupleSections TypeApplications TypeFamilies TypeOperators
+  ghc-options: -Wall -Wcompat -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.12 && <5
+    , call-stack
+    , http-trace-context
+    , tasty
+    , tasty-hunit
+  default-language: Haskell2010

@@ -1,0 +1,81 @@
+name: &this http-trace-context
+version: 0.1.0.0
+synopsis: |
+  Parsing and rendering of Trace Context HTTP headers for distributed tracing.
+description: |
+  Parsing and rendering of Trace Context HTTP headers for distributed tracing
+  as defined by [Trace Context Level 1](https://www.w3.org/TR/trace-context-1/)
+  and [Trace Context Level 2 (Draft)](https://w3c.github.io/trace-context/).
+
+  See [GitHub README](https://github.com/trskop/trace-context#readme) for more
+  information.
+
+github: trskop/http-trace-context
+license: BSD3
+license-file: LICENSE
+author: Peter Trško
+maintainer: peter.trsko@gmail.com
+copyright: (c) 2020 Peter Trško
+category: Network, Web
+
+extra-source-files:
+  - README.md
+
+default-extensions:
+  - BlockArguments
+  - DataKinds
+  - DefaultSignatures
+  - DeriveAnyClass
+  - DeriveFunctor
+  - DeriveGeneric
+  - DerivingStrategies
+  - DuplicateRecordFields
+  - FlexibleContexts
+  - FlexibleInstances
+  - GeneralizedNewtypeDeriving
+  - InstanceSigs
+  - LambdaCase
+  - MultiParamTypeClasses
+  - MultiWayIf
+  - NamedFieldPuns
+  - NoImplicitPrelude
+  - OverloadedStrings
+  - PatternSynonyms
+  - PolyKinds
+  - RankNTypes
+  - RecordWildCards
+  - ScopedTypeVariables
+  - StandaloneDeriving
+  - TupleSections
+  - TypeApplications
+  - TypeFamilies
+  - TypeOperators
+
+dependencies:
+  - base >=4.12 && <5
+  # ^ Version 4.12.0.0 is bundled with 8.6.*, we should be able to support even
+  # older, but that would mean supporting more GHC versions.
+
+ghc-options: ["-Wall", "-Wcompat"]
+
+library:
+  source-dirs: src
+
+  dependencies:
+    - attoparsec
+    - bytestring
+    - deepseq
+#   - http-api-data
+    - http-types
+
+tests:
+  command-wrapper-tests:
+    source-dirs: test
+    main: Main.hs
+    dependencies:
+      - *this
+
+      - call-stack
+      - tasty
+      - tasty-hunit
+    ghc-options: ["-threaded", "-rtsopts", "-with-rtsopts=-N"]
